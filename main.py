@@ -3,7 +3,7 @@ import multiprocessing
 
 #TODO: Change the domain variable to the domain you would like to scan
 #domain = "scanme.nmap.org"
-domain = "www.acadiau.ca"
+domain = "http://hack-yourself-first.com/"
 #TODO: Change the home_dir variable to the path to the folder that you'd like the output files written to. Note: End with a forward slash
 home_dir = '/Users/samanthamorris/beachcomber-output/'
 
