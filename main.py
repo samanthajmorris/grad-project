@@ -67,19 +67,19 @@ if __name__ == "__main__":
     #Warning: Nikto takes ~10 minutes to run
     #p1 = multiprocessing.Process(target=nikto_function)
 
-    #p2 = multiprocessing.Process(target=sslyze_function)
+    p2 = multiprocessing.Process(target=sslyze_function)
     p3 = multiprocessing.Process(target=nmap_function2)
-    #p4 = multiprocessing.Process(target=pshtt_function)
+    p4 = multiprocessing.Process(target=pshtt_function)
 
     #p1.start()
-    #p2.start()
+    p2.start()
     p3.start()
-    #p4.start()
+    p4.start()
 
     #p1.join()
-    #p2.join()
+    p2.join()
     p3.join()
-    #p4.join()
+    p4.join()
     print("Finished Analysis.")
 
 
