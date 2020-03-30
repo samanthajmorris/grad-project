@@ -16,9 +16,9 @@ The purpose of XX is not to replace the penetration testers or make them obsolet
 1.	Download or clone the repository
 2.	This tool depends on the following Python mpdules: docker, multiprocessing, pandas, xmltodict, tarfile, json, tldextract. Please ensure these modules are in your Python environment.
 3.	Open the main.py file and change the path of 'home_dir' to whichever directory you would like scan reports to save to.
-4.  	Download Docker Desktop here: https://www.docker.com/products/docker-desktop
+4.  Download Docker Desktop here: https://www.docker.com/products/docker-desktop
 5.	Run with the command ‘python main.py’
-6.  	When prompted, enter the domain you would like to scan.
+6.  When prompted, enter the domain you would like to scan.
 
 ## How it works
 
