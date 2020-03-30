@@ -22,7 +22,7 @@ The purpose of XX is not to replace the penetration testers or make them obsolet
 
 # How it works
 
-![An example scan process.](resources/flowchart.png "An example scan process.")
+![An example scan process.](resources/XX-Flowchart.png "An example scan process.")
 
 PSHTT: https://github.com/cisagov/pshtt
 SSLYZE: https://github.com/nabla-c0d3/sslyze
