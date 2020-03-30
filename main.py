@@ -4,6 +4,7 @@ import pandas as pd
 import xmltodict
 import tarfile
 import json
+import tldextract
 
 #TODO: Change the home_dir variable to the path to the folder that you'd like the output files written to. Note: End with a forward slash
 home_dir = '/Users/samanthamorris/beachcomber-output/'
@@ -253,12 +254,16 @@ def sslyze_analysis(data):
     else:
         print("OK -  Not vulnerable, RSA cipher suites not supported")
 
-    if(reneg['accepts_client_renegotiation'] != False):
-        print("WARNING: Allowing renegociation makes your site vulnerable to Man-in-the-middle and DDOS Attacks - Please Disable SSL renegociation")
-    elif(reneg['supports_secure_renegotiation'] == True):
-        print("OK - Only Secure Renegociation suppoted.")
-    else:
-        print("OK: Renegociation not supported.")
+    try:
+        if(reneg['accepts_client_renegotiation'] != False):
+            print("WARNING: Allowing renegociation makes your site vulnerable to Man-in-the-middle and DDOS Attacks - Please Disable SSL renegociation")
+        elif(reneg['supports_secure_renegotiation'] == True):
+            print("OK - Only Secure Renegociation suppoted.")
+        else:
+            print("OK: Renegociation not supported.")
+    except KeyError:
+        print("WARNING: Test for renegociation timed out. Could be vulnerable.")
+
 
     if(sslv2 != []):
         print("WARNING: SSLV2 is vulnerable and outdated - Please disable SSLV2 traffic.")
@@ -280,24 +285,24 @@ def sslyze_analysis(data):
 
     if (tlsv1_1 != []):
         print('{:<5}{:<30}'.format('', 'TLSV1.1 Accpeted Ciphers:'))
-        for item in tlsv1:
+        for item in tlsv1_1:
             print('{:<10}{:<40}{:<5}bits'.format('', item['openssl_name'], item['key_size']))
     else:
         print("Server Rejected all TLSV1.1 Cipher Suites")
 
     if (tlsv1_2 != []):
-        print('{:<5}{:<30}'.format('', 'TLSV1.1 Accpeted Ciphers:'))
-        for item in tlsv1:
+        print('{:<5}{:<30}'.format('', 'TLSV1.2 Accpeted Ciphers:'))
+        for item in tlsv1_2:
             print('{:<10}{:<40}{:<5}bits'.format('', item['openssl_name'], item['key_size']))
     else:
-        print("Server Rejected all TLSV1.1 Cipher Suites")
+        print("Server Rejected all TLSV1.2 Cipher Suites")
 
     if (tlsv1_3 != []):
-        print('{:<5}{:<30}'.format('', 'TLSV1.1 Accpeted Ciphers:'))
-        for item in tlsv1:
+        print('{:<5}{:<30}'.format('', 'TLSV1.3 Accpeted Ciphers:'))
+        for item in tlsv1_3:
             print('{:<10}{:<40}{:<5}bits'.format('', item['openssl_name'], item['key_size']))
     else:
-        print("Server Rejected all TLSV1.1 Cipher Suites")
+        print("Server Rejected all TLSV1.3 Cipher Suites")
 
 # Pulls Nmap scan results and comments on what they mean, making suggestions to the user based on the results
 # params: data: Python dictionary containing the results from the Nmap scan
@@ -318,7 +323,12 @@ if __name__ == "__main__":
     # Warning: Nikto takes ~10 minutes to run, so will be implemented in a future iteration.
     #p1 = multiprocessing.Process(target=nikto_function)
 
-    domain = input('What domain would you like to scan?: ')
+    # Get URL from User
+    site = input('What domain would you like to scan?: ')
+
+    # Get registered domain from the url provided by the user
+    ext = tldextract.extract(site)
+    domain = ext.registered_domain
 
     p2 = multiprocessing.Process(target=run_sslyze, args=(domain,))
     p3 = multiprocessing.Process(target=run_nmap, args=(domain,))
@@ -343,23 +353,7 @@ if __name__ == "__main__":
     nmap_analysis(nmap_data)
 
     sslyze_analysis(sslyze_to_dict())
-    """
-    max_tries = 1
-    try:
-        json_to_dict(home_dir + 'sslyze_report.json')
-    except json.decoder.JSONDecodeError:
-        print("Inside Catch")
-        if (max_tries > 0):
-            f = open(home_dir + 'sslyze_report.json', "a")
-            f.write("}")
-            f.close()
-            json_to_dict(home_dir + 'sslyze_report.json')
-            max_tries = max_tries - 1
-        else:
-            print("Error with SSLYZE JSON File. Unable to parse results.")
-    except:
-        print("Error with SSLYZE JSON File. Unable to parse results.")
-    print("Finished Analysis.")"""
+
 
 
 
