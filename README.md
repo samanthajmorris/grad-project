@@ -203,11 +203,6 @@ issues (bad certificate, weak cipher suites, Heartbleed, ROBOT, TLS 1.3 support,
 
 SSLyze can either be used as command line tool or as a Python library.
 
-Key features
-------------
-
-* Fully [documented Python API](https://nabla-c0d3.github.io/sslyze/documentation/), in order to run scans and process 
-the results directly from Python.
 * Support for TLS 1.3 and early data (0-RTT) testing.
 * Scans are automatically dispatched among multiple workers, making them very fast.
 * Performance testing: session resumption and TLS tickets support.
