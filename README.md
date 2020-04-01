@@ -1,9 +1,9 @@
-# XX
+# BEACHCOMBER WEB
 
 
-## What is XX?
+## What is BEACHCOMBER WEB?
 
-XX is a docker based, containerized, multiprocessing based toolchain for security scans of your domain and generates a report outlining the possible vulnerabilities indicated in the various scans. XX scans also output the full scans from each of its services in a parsable format (XML, JSON or CSV) for further analysis. Future iterations of this project include the development of a user friendly graphical interface which would be easily accessible to users who are not experience with the command line interface. 
+BEACHCOMBER II is a docker based, containerized, multiprocessing based toolchain for security scans of your domain and generates a report outlining the possible vulnerabilities indicated in the various scans. XX scans also output the full scans from each of its services in a parsable format (XML, JSON or CSV) for further analysis. Future iterations of this project include the development of a user friendly graphical interface which would be easily accessible to users who are not experience with the command line interface. 
 
 ## The Purpose
 
