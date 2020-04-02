@@ -1,4 +1,4 @@
-# BEACHCOMBER WEB
+# BEACHCOMBER WEB Security Scanner
 
 
 ## What is BEACHCOMBER WEB?
