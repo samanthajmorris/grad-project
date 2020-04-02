@@ -21,6 +21,8 @@ The purpose of XX is not to replace the penetration testers or make them obsolet
 5.	Run program with the command ‘python main.py’
 6.  When prompted, enter the domain you would like to scan.
 
+Demo: https://youtu.be/wsptpvA44KY
+
 ## How it works
 
 ![An example scan process.](resources/XX-Flowchart.png "An example scan process.")
